@@ -7,6 +7,9 @@
 
 [node name="main" type="Node"]
 
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
 [node name="sorting" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -20,6 +23,48 @@ position = Vector2(-1088, -625)
 
 [node name="demon3" parent="sorting" instance=ExtResource("2_0xm2m")]
 position = Vector2(-1277, 1245)
+
+[node name="demon4" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(-5701, -2343)
+
+[node name="demon5" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(-2317, -4219)
+
+[node name="demon6" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(7897, -4056)
+
+[node name="demon7" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(8019, -733)
+
+[node name="demon8" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(8916, 7075)
+
+[node name="demon9" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(4859, 8176)
+
+[node name="demon10" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(1230, 6525)
+
+[node name="demon11" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(-1787, 6627)
+
+[node name="demon12" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(-3744, 2529)
+
+[node name="demon13" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(3147, -3241)
+
+[node name="demon14" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(5226, -3363)
+
+[node name="demon15" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(6286, 2101)
+
+[node name="demon16" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(7142, 3120)
+
+[node name="demon17" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(-4948, 6565)
 
 [node name="skeleton_prop" parent="sorting" instance=ExtResource("3_h2yge")]
 position = Vector2(668, -246)

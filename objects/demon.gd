@@ -4,6 +4,7 @@ class_name Demon
 # Movement properties
 @export var move_speed: float = 100
 var move_direction: Vector2 = Vector2.ZERO
+@export var animation_player: AnimationPlayer
 
 # Health
 @export var health: Health
@@ -22,3 +23,8 @@ func _physics_process(_delta: float) -> void:
   # Handle movement
   velocity = move_direction * move_speed
   move_and_slide()
+
+  if velocity.length() > 0.01:
+    animation_player.play('run')
+  else:
+    animation_player.play('idle')

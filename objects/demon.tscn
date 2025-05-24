@@ -1,24 +1,84 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi6j2msajxmqr"]
+[gd_scene load_steps=13 format=3 uid="uid://bi6j2msajxmqr"]
 
 [ext_resource type="Script" uid="uid://dxbhbs4axjgik" path="res://objects/demon.gd" id="1_i1g67"]
 [ext_resource type="Texture2D" uid="uid://b2ymsg6xqbi3a" path="res://sprites/demon.png" id="1_v40ab"]
 [ext_resource type="Script" uid="uid://dbnki8y8un232" path="res://components/sprite_flip.gd" id="3_qc62n"]
+[ext_resource type="Texture2D" uid="uid://b42ilhewfytdi" path="res://sprites/demon-run-1.png" id="5_556me"]
 [ext_resource type="Script" uid="uid://cqc3anvu40jpp" path="res://components/health.gd" id="5_dqvf4"]
+[ext_resource type="Texture2D" uid="uid://ucrxvci3uqal" path="res://sprites/demon-run-2.png" id="6_556me"]
+[ext_resource type="Texture2D" uid="uid://ctbcfj32klctt" path="res://sprites/demon-run-3.png" id="7_qh3hn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v40ab"]
 radius = 48.28
 height = 278.82
 
-[node name="demon" type="CharacterBody2D" node_paths=PackedStringArray("health")]
+[sub_resource type="Animation" id="Animation_dqvf4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_v40ab")]
+}
+
+[sub_resource type="Animation" id="Animation_8k0bl"]
+resource_name = "idle"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_v40ab")]
+}
+
+[sub_resource type="Animation" id="Animation_556me"]
+resource_name = "run"
+length = 0.750025
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_556me"), ExtResource("6_556me"), ExtResource("7_qh3hn")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqvf4"]
+_data = {
+&"RESET": SubResource("Animation_dqvf4"),
+&"idle": SubResource("Animation_8k0bl"),
+&"run": SubResource("Animation_556me")
+}
+
+[node name="demon" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "health")]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_i1g67")
 move_speed = 200.0
+animation_player = NodePath("animation")
 health = NodePath("health")
 
 [node name="sprite" type="Sprite2D" parent="." node_paths=PackedStringArray("root")]
-position = Vector2(0, -228)
+position = Vector2(0, -188)
 texture = ExtResource("1_v40ab")
 script = ExtResource("3_qc62n")
 root = NodePath("..")
@@ -31,5 +91,10 @@ shape = SubResource("CapsuleShape2D_v40ab")
 script = ExtResource("5_dqvf4")
 current_health = 1.0
 metadata/_custom_type_script = "uid://cqc3anvu40jpp"
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dqvf4")
+}
 
 [connection signal="died" from="health" to="." method="queue_free"]
