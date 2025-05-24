@@ -3,16 +3,19 @@ class_name Player
 
 # Movement properties
 @export var move_speed: float = 0
-@export var move_direction: Vector2 = Vector2.ZERO
+var move_direction: Vector2 = Vector2.ZERO
 
 # Aiming properties
-@export var aim_direction: Vector2 = Vector2.ZERO
-@export var aim_global_position: Vector2 = Vector2.ZERO
+var aim_direction: Vector2 = Vector2.ZERO
+var aim_global_position: Vector2 = Vector2.ZERO
 const aim_distance: float = 100
 
 # Shooting properties
 @export var cooldown_timer: Timer
 @export var projectile: PackedScene
+
+# Health
+@export var health: Health
 
 func _physics_process(_delta: float) -> void:
   # Handle movement

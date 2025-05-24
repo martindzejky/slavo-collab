@@ -3,7 +3,10 @@ class_name Demon
 
 # Movement properties
 @export var move_speed: float = 100
-@export var move_direction: Vector2 = Vector2.ZERO
+var move_direction: Vector2 = Vector2.ZERO
+
+# Health
+@export var health: Health
 
 func _process(_delta: float) -> void:
   follow_player()

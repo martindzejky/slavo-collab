@@ -1,19 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi6j2msajxmqr"]
+[gd_scene load_steps=6 format=3 uid="uid://bi6j2msajxmqr"]
 
 [ext_resource type="Script" uid="uid://dxbhbs4axjgik" path="res://objects/demon.gd" id="1_i1g67"]
 [ext_resource type="Texture2D" uid="uid://b2ymsg6xqbi3a" path="res://sprites/demon.png" id="1_v40ab"]
 [ext_resource type="Script" uid="uid://dbnki8y8un232" path="res://components/sprite_flip.gd" id="3_qc62n"]
+[ext_resource type="Script" uid="uid://cqc3anvu40jpp" path="res://components/health.gd" id="5_dqvf4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v40ab"]
 radius = 48.28
 height = 278.82
 
-[node name="demon" type="CharacterBody2D"]
+[node name="demon" type="CharacterBody2D" node_paths=PackedStringArray("health")]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_i1g67")
 move_speed = 200.0
+health = NodePath("health")
 
 [node name="sprite" type="Sprite2D" parent="." node_paths=PackedStringArray("root")]
 position = Vector2(0, -228)
@@ -24,3 +26,10 @@ root = NodePath("..")
 [node name="shape" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v40ab")
+
+[node name="health" type="Node" parent="."]
+script = ExtResource("5_dqvf4")
+current_health = 1.0
+metadata/_custom_type_script = "uid://cqc3anvu40jpp"
+
+[connection signal="died" from="health" to="." method="queue_free"]
