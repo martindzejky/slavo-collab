@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi6j2msajxmqr"]
+[gd_scene load_steps=5 format=3 uid="uid://bi6j2msajxmqr"]
 
+[ext_resource type="Script" uid="uid://dxbhbs4axjgik" path="res://objects/demon.gd" id="1_i1g67"]
 [ext_resource type="Texture2D" uid="uid://b2ymsg6xqbi3a" path="res://sprites/demon.png" id="1_v40ab"]
-[ext_resource type="Script" uid="uid://s2w8g814b71b" path="res://components/enemy_movement.gd" id="2_i1g67"]
 [ext_resource type="Script" uid="uid://dbnki8y8un232" path="res://components/sprite_flip.gd" id="3_qc62n"]
-[ext_resource type="Script" uid="uid://15a62ykex7ev" path="res://components/enemy_follow_player.gd" id="4_8k0bl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v40ab"]
 radius = 48.28
@@ -13,29 +12,15 @@ height = 278.82
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
+script = ExtResource("1_i1g67")
+move_speed = 200.0
 
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="." node_paths=PackedStringArray("root")]
 position = Vector2(0, -228)
 texture = ExtResource("1_v40ab")
+script = ExtResource("3_qc62n")
+root = NodePath("..")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v40ab")
-
-[node name="movement" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("2_i1g67")
-root = NodePath("..")
-move_speed = 100.0
-metadata/_custom_type_script = "uid://s2w8g814b71b"
-
-[node name="flip" type="Node" parent="." node_paths=PackedStringArray("spriteRoot", "movement")]
-script = ExtResource("3_qc62n")
-spriteRoot = NodePath("../sprite")
-movement = NodePath("../movement")
-metadata/_custom_type_script = "uid://dbnki8y8un232"
-
-[node name="follow_player" type="Node" parent="." node_paths=PackedStringArray("root", "movement")]
-script = ExtResource("4_8k0bl")
-root = NodePath("..")
-movement = NodePath("../movement")
-metadata/_custom_type_script = "uid://15a62ykex7ev"

@@ -1,11 +1,10 @@
-extends Node
+extends Node2D
 class_name SpriteFlip
 
-@export var spriteRoot: Node2D
-@export var movement: Movement
+@export var root: CharacterBody2D
 
-func _process(_delta: float) -> void:
-  if movement.move_direction.x > 0:
-    spriteRoot.scale.x = 1
-  elif movement.move_direction.x < 0:
-    spriteRoot.scale.x = -1
+func _physics_process(_delta: float) -> void:
+  if root.velocity.x > 0:
+    scale.x = 1
+  elif root.velocity.x < 0:
+    scale.x = -1

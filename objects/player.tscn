@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0xu1ayxe3mag"]
+[gd_scene load_steps=8 format=3 uid="uid://c0xu1ayxe3mag"]
 
+[ext_resource type="Script" uid="uid://16yo4sl8lncw" path="res://objects/player.gd" id="1_3rerk"]
 [ext_resource type="Texture2D" uid="uid://bjlyjpb5btrx7" path="res://sprites/hero-body.png" id="1_f46kd"]
 [ext_resource type="Texture2D" uid="uid://blsiqig2yjygr" path="res://sprites/hero-head.png" id="2_3rerk"]
 [ext_resource type="Texture2D" uid="uid://bqc1pwpf8qst7" path="res://sprites/hero-heart.png" id="2_i825w"]
-[ext_resource type="Script" uid="uid://cprpyw1o7f7ij" path="res://components/player_movement.gd" id="2_ykyjo"]
-[ext_resource type="Script" uid="uid://dtwtt13ifecpy" path="res://components/player_aiming.gd" id="3_uxov2"]
-[ext_resource type="Script" uid="uid://r78wj8jvkhy2" path="res://components/player_shooting.gd" id="4_nmc1l"]
 [ext_resource type="PackedScene" uid="uid://cnkojjn1en3gk" path="res://objects/heart_projectile.tscn" id="5_f46kd"]
 [ext_resource type="Script" uid="uid://dbnki8y8un232" path="res://components/sprite_flip.gd" id="8_3rfka"]
 
@@ -13,11 +11,17 @@
 radius = 30.0
 height = 153.98
 
-[node name="player" type="CharacterBody2D" groups=["player"]]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("cooldown_timer") groups=["player"]]
 collision_mask = 3
 motion_mode = 1
+script = ExtResource("1_3rerk")
+move_speed = 700.0
+cooldown_timer = NodePath("shoot_cooldown")
+projectile = ExtResource("5_f46kd")
 
-[node name="sprites" type="Node2D" parent="."]
+[node name="sprites" type="Node2D" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("8_3rfka")
+root = NodePath("..")
 
 [node name="body" type="Sprite2D" parent="sprites"]
 self_modulate = Color(0.956863, 0.584314, 0.203922, 1)
@@ -46,30 +50,3 @@ shape = SubResource("CapsuleShape2D_3rfka")
 [node name="shoot_cooldown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-
-[node name="movement" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("2_ykyjo")
-root = NodePath("..")
-move_speed = 400.0
-metadata/_custom_type_script = "uid://cprpyw1o7f7ij"
-
-[node name="aiming" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("3_uxov2")
-root = NodePath("..")
-metadata/_custom_type_script = "uid://dtwtt13ifecpy"
-
-[node name="shooting" type="Node" parent="." node_paths=PackedStringArray("root", "cooldown_timer", "aiming")]
-script = ExtResource("4_nmc1l")
-root = NodePath("..")
-cooldown_timer = NodePath("../shoot_cooldown")
-aiming = NodePath("../aiming")
-projectile = ExtResource("5_f46kd")
-projectile_movement_component_path = NodePath("movement")
-projectile_movement_direction_name = "direction"
-metadata/_custom_type_script = "uid://r78wj8jvkhy2"
-
-[node name="flip" type="Node" parent="." node_paths=PackedStringArray("spriteRoot", "movement")]
-script = ExtResource("8_3rfka")
-spriteRoot = NodePath("../sprites")
-movement = NodePath("../movement")
-metadata/_custom_type_script = "uid://dbnki8y8un232"
