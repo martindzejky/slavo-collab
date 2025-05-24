@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0xu1ayxe3mag"]
+[gd_scene load_steps=9 format=3 uid="uid://c0xu1ayxe3mag"]
 
 [ext_resource type="Texture2D" uid="uid://bjlyjpb5btrx7" path="res://sprites/hero-body.png" id="1_f46kd"]
 [ext_resource type="Texture2D" uid="uid://blsiqig2yjygr" path="res://sprites/hero-head.png" id="2_3rerk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dtwtt13ifecpy" path="res://components/player_aiming.gd" id="3_uxov2"]
 [ext_resource type="Script" uid="uid://r78wj8jvkhy2" path="res://components/player_shooting.gd" id="4_nmc1l"]
 [ext_resource type="PackedScene" uid="uid://cnkojjn1en3gk" path="res://objects/heart_projectile.tscn" id="5_f46kd"]
+[ext_resource type="Script" uid="uid://dbnki8y8un232" path="res://components/sprite_flip.gd" id="8_3rfka"]
 
 [node name="player" type="Node2D"]
 
@@ -56,3 +57,9 @@ projectile = ExtResource("5_f46kd")
 projectile_movement_component_path = NodePath("movement")
 projectile_movement_direction_name = "direction"
 metadata/_custom_type_script = "uid://r78wj8jvkhy2"
+
+[node name="flip" type="Node" parent="." node_paths=PackedStringArray("spriteRoot", "movement")]
+script = ExtResource("8_3rfka")
+spriteRoot = NodePath("../sprites")
+movement = NodePath("../movement")
+metadata/_custom_type_script = "uid://dbnki8y8un232"
