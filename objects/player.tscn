@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0xu1ayxe3mag"]
+[gd_scene load_steps=17 format=3 uid="uid://c0xu1ayxe3mag"]
 
 [ext_resource type="Script" uid="uid://16yo4sl8lncw" path="res://objects/player.gd" id="1_3rerk"]
 [ext_resource type="Texture2D" uid="uid://bjlyjpb5btrx7" path="res://sprites/hero-body.png" id="1_f46kd"]
@@ -6,17 +6,116 @@
 [ext_resource type="Texture2D" uid="uid://bqc1pwpf8qst7" path="res://sprites/hero-heart.png" id="2_i825w"]
 [ext_resource type="PackedScene" uid="uid://cnkojjn1en3gk" path="res://objects/heart_projectile.tscn" id="5_f46kd"]
 [ext_resource type="Script" uid="uid://dbnki8y8un232" path="res://components/sprite_flip.gd" id="8_3rfka"]
+[ext_resource type="Texture2D" uid="uid://cljvtw2yvwpos" path="res://sprites/hero-run-1.png" id="8_i8sra"]
+[ext_resource type="Texture2D" uid="uid://c1w4cysc7numx" path="res://sprites/hero-run-2.png" id="9_4vq5b"]
 [ext_resource type="Script" uid="uid://cqc3anvu40jpp" path="res://components/health.gd" id="9_i8sra"]
+[ext_resource type="Texture2D" uid="uid://bqt37c31bmiie" path="res://sprites/hero-run-3.png" id="10_3nfmf"]
+[ext_resource type="Texture2D" uid="uid://b5aj1hcrauhyc" path="res://sprites/hero-run-4.png" id="11_3nfmf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3rfka"]
 radius = 30.0
 height = 153.98
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("cooldown_timer", "health") groups=["player"]]
+[sub_resource type="Animation" id="Animation_i825w"]
+resource_name = "idle"
+length = 1.00005
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-17.5, -252), Vector2(-17, -244)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprites/body:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_f46kd")]
+}
+
+[sub_resource type="Animation" id="Animation_3rfka"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17.5, -252)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprites/body:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_f46kd")]
+}
+
+[sub_resource type="Animation" id="Animation_i8sra"]
+resource_name = "run"
+length = 0.500013
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_i8sra"), ExtResource("9_4vq5b"), ExtResource("10_3nfmf"), ExtResource("11_3nfmf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprites/head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-17.5, -252), Vector2(-17.5, -240), Vector2(-17.5, -252), Vector2(-17.5, -240)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8sra"]
+_data = {
+&"RESET": SubResource("Animation_3rfka"),
+&"idle": SubResource("Animation_i825w"),
+&"run": SubResource("Animation_i8sra")
+}
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "cooldown_timer", "health") groups=["player"]]
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_3rerk")
 move_speed = 700.0
+animation_player = NodePath("animation")
 cooldown_timer = NodePath("shoot_cooldown")
 projectile = ExtResource("5_f46kd")
 health = NodePath("health")
@@ -42,7 +141,6 @@ texture = ExtResource("2_3rerk")
 [node name="camera" type="Camera2D" parent="."]
 position = Vector2(0, -243)
 zoom = Vector2(0.5, 0.5)
-position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="shape" type="CollisionShape2D" parent="."]
@@ -57,5 +155,11 @@ one_shot = true
 script = ExtResource("9_i8sra")
 current_health = 3.0
 metadata/_custom_type_script = "uid://cqc3anvu40jpp"
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i8sra")
+}
+autoplay = "idle"
 
 [connection signal="died" from="health" to="." method="queue_free"]

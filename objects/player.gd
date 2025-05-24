@@ -4,6 +4,7 @@ class_name Player
 # Movement properties
 @export var move_speed: float = 0
 var move_direction: Vector2 = Vector2.ZERO
+@export var animation_player: AnimationPlayer
 
 # Aiming properties
 var aim_direction: Vector2 = Vector2.ZERO
@@ -13,6 +14,7 @@ const aim_distance: float = 100
 # Shooting properties
 @export var cooldown_timer: Timer
 @export var projectile: PackedScene
+const projectile_offset: float = 10
 
 # Health
 @export var health: Health
@@ -22,6 +24,11 @@ func _physics_process(_delta: float) -> void:
   move_direction = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
   velocity = move_direction * move_speed
   move_and_slide()
+
+  if velocity.length() > 0.01:
+    animation_player.play('run')
+  else:
+    animation_player.play('idle')
 
 func _process(_delta: float) -> void:
   # Handle aiming
@@ -44,5 +51,5 @@ func shoot() -> void:
   var shot_projectile = projectile.instantiate() as Projectile
   get_parent().add_child(shot_projectile)
 
-  shot_projectile.global_position = global_position
+  shot_projectile.global_position = global_position + aim_direction * projectile_offset
   shot_projectile.move_direction = aim_direction
