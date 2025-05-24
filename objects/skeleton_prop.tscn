@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://gesvud47naq1"]
+
+[ext_resource type="Texture2D" uid="uid://dy8xwc3v8d7ek" path="res://sprites/bg-item-1.png" id="1_l3dmo"]
+
+[node name="skeleton_prop" type="Node2D"]
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+texture = ExtResource("1_l3dmo")

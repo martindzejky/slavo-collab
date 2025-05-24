@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://wnvov4rkcpid"]
+[gd_scene load_steps=5 format=3 uid="uid://wnvov4rkcpid"]
 
 [ext_resource type="PackedScene" uid="uid://c0xu1ayxe3mag" path="res://objects/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bi6j2msajxmqr" path="res://objects/demon.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://gesvud47naq1" path="res://objects/skeleton_prop.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dcgy8qljxye3y" path="res://objects/stone_prop.tscn" id="4_1bvp3"]
 
 [node name="main" type="Node"]
 
@@ -12,3 +14,78 @@ y_sort_enabled = true
 
 [node name="demon" parent="sorting" instance=ExtResource("2_0xm2m")]
 position = Vector2(416, -529)
+
+[node name="demon2" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(-1088, -625)
+
+[node name="demon3" parent="sorting" instance=ExtResource("2_0xm2m")]
+position = Vector2(-1277, 1245)
+
+[node name="skeleton_prop" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(668, -246)
+
+[node name="skeleton_prop2" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(-423, -712)
+
+[node name="skeleton_prop3" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(-620, -469)
+
+[node name="skeleton_prop4" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(275, -1480)
+
+[node name="skeleton_prop5" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(1074, -1783)
+
+[node name="skeleton_prop6" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(1362, -737)
+
+[node name="skeleton_prop7" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(1291, 142)
+
+[node name="skeleton_prop8" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(1685, 1350)
+
+[node name="skeleton_prop9" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(967, 1375)
+
+[node name="skeleton_prop10" parent="sorting" instance=ExtResource("3_h2yge")]
+position = Vector2(-1636, -682)
+
+[node name="stone_prop" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(551, 161)
+
+[node name="stone_prop2" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(799, -532)
+
+[node name="stone_prop3" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(-758, 168)
+
+[node name="stone_prop4" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(-333, 1199)
+
+[node name="stone_prop5" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(-934, 1912)
+
+[node name="stone_prop6" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(-1738, 1270)
+
+[node name="stone_prop7" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(-1490, 476)
+
+[node name="stone_prop8" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(-1733, -904)
+
+[node name="stone_prop9" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(-116, -1708)
+
+[node name="stone_prop10" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(1264, -1258)
+
+[node name="stone_prop11" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(1719, -1233)
+
+[node name="stone_prop12" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(2098, -96)
+
+[node name="stone_prop13" parent="sorting" instance=ExtResource("4_1bvp3")]
+position = Vector2(2042, 374)
