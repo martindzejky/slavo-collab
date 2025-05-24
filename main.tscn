@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://wnvov4rkcpid"]
+[gd_scene load_steps=2 format=3 uid="uid://wnvov4rkcpid"]
+
+[ext_resource type="PackedScene" uid="uid://c0xu1ayxe3mag" path="res://objects/player.tscn" id="1_ig7tw"]
 
 [node name="main" type="Node"]
+
+[node name="sorting" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="player" parent="sorting" instance=ExtResource("1_ig7tw")]
