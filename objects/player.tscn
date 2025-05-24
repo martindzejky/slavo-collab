@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0xu1ayxe3mag"]
+[gd_scene load_steps=10 format=3 uid="uid://c0xu1ayxe3mag"]
 
 [ext_resource type="Texture2D" uid="uid://bjlyjpb5btrx7" path="res://sprites/hero-body.png" id="1_f46kd"]
 [ext_resource type="Texture2D" uid="uid://blsiqig2yjygr" path="res://sprites/hero-head.png" id="2_3rerk"]
@@ -9,13 +9,19 @@
 [ext_resource type="PackedScene" uid="uid://cnkojjn1en3gk" path="res://objects/heart_projectile.tscn" id="5_f46kd"]
 [ext_resource type="Script" uid="uid://dbnki8y8un232" path="res://components/sprite_flip.gd" id="8_3rfka"]
 
-[node name="player" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3rfka"]
+radius = 30.0
+height = 153.98
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 3
+motion_mode = 1
 
 [node name="sprites" type="Node2D" parent="."]
 
 [node name="body" type="Sprite2D" parent="sprites"]
 self_modulate = Color(0.956863, 0.584314, 0.203922, 1)
-position = Vector2(0, -109)
+position = Vector2(-6.5, -109)
 texture = ExtResource("1_f46kd")
 
 [node name="heart" type="Sprite2D" parent="sprites/body"]
@@ -24,7 +30,7 @@ texture = ExtResource("2_i825w")
 
 [node name="head" type="Sprite2D" parent="sprites"]
 self_modulate = Color(0.956863, 0.584314, 0.203922, 1)
-position = Vector2(-11, -252)
+position = Vector2(-17.5, -252)
 texture = ExtResource("2_3rerk")
 
 [node name="camera" type="Camera2D" parent="."]
@@ -32,6 +38,10 @@ position = Vector2(0, -243)
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="shape" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3rfka")
 
 [node name="shoot_cooldown" type="Timer" parent="."]
 wait_time = 0.5

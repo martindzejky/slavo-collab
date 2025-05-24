@@ -15,6 +15,10 @@ run/main_scene="uid://wnvov4rkcpid"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[global_group]
+
+player=""
+
 [input]
 
 move_up={
@@ -72,6 +76,13 @@ aim_down={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="player-projectile"
+2d_physics/layer_4="enemy-projectile"
 
 [rendering]
 
