@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi6j2msajxmqr"]
+
+[ext_resource type="Texture2D" uid="uid://b2ymsg6xqbi3a" path="res://sprites/demon.png" id="1_v40ab"]
+
+[node name="demon" type="Node2D"]
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -228)
+texture = ExtResource("1_v40ab")
