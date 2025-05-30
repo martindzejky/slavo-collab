@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Martin+Slavo collaboration"
+config/name="Man demon game"
+config/version="0.0"
 run/main_scene="uid://wnvov4rkcpid"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
